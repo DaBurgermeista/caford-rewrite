@@ -1,7 +1,7 @@
 "use client";
 
 import { useGameStore } from "@/store/gameStore";
-import GameChoiceButton from "./GameChoiceButton";
+import GameChoiceButton from "../../components/GameUI/GameChoiceButton";
 
 export default function IntroScene() {
   const { state, setState, addLog, nextTurn } = useGameStore();
