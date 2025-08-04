@@ -43,12 +43,23 @@ export default function InventoryPanel() {
   );
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 p-4 bg-stone-900 border rounded-lg">
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 gap-y-6 p-4 bg-stone-900 border rounded-lg">
       <h3 className="col-span-full text-sm text-muted-foreground uppercase tracking-wider">
         Equipped
       </h3>
       {Object.entries(equipped).map(([slot, item]) =>
-        item ? renderItemCard(item, true) : <div key={slot}>Empty {slot}</div>
+        item ? (
+          renderItemCard(item, true)
+        ) : (
+          <div
+            key={slot}
+            className="gap-1 space-y-0.5 border m-2 border-dashed p-2 rounded text-center text-muted-foreground text-[10px] flex flex-col items-center justify-center min-w-[100px] max-w-[100px]
+"
+          >
+            <span className="font-semibold">Empty</span>
+            <span className="capitalize break-words max-w-[72px]">{slot}</span>
+          </div>
+        )
       )}
 
       <h3 className="col-span-full text-sm mt-4 text-muted-foreground uppercase tracking-wider">
