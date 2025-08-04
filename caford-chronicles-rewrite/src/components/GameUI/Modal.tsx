@@ -5,10 +5,16 @@ import { FaCircleXmark } from "react-icons/fa6";
 type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
+  title?: string;
   children: ReactNode;
 };
 
-export default function Modal({ isOpen, onClose, children }: ModalProps) {
+export default function Modal({
+  isOpen,
+  onClose,
+  title,
+  children,
+}: ModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -20,6 +26,7 @@ export default function Modal({ isOpen, onClose, children }: ModalProps) {
         >
           <FaCircleXmark />
         </button>
+        {title && <h2 className="text-xl font-bold mb-4">{title}</h2>}
         {children}
       </div>
     </div>

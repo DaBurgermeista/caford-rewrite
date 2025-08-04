@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Modal from "./Modal";
+import Modal from "@/components/GameUI/Modal";
 import { usePlayerStore } from "@/store/playerStore";
 
 export default function Sidebar() {
@@ -23,8 +23,7 @@ export default function Sidebar() {
         </button>
       </aside>
 
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-        <h2 className="text-xl font-bold mb-4">Stats</h2>
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="Stats">
         <p>Name: {player?.name}</p>
         <p>Class: {player?.class}</p>
         <p>Level: {player?.level}</p>
