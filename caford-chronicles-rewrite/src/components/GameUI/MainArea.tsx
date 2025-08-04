@@ -1,5 +1,5 @@
 import { useGameStore } from "@/store/gameStore";
-import IntroScene from "../../app/scenes/IntroScene";
+import IntroScene from "../../scenes/IntroScene";
 
 export default function MainArea() {
   const { log, addLog, state, nextTurn, setState } = useGameStore();
