@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import { useInventoryStore } from "@/store/inventoryStore";
+import { ITEMS } from "@/data/items";
 
 export type CharacterClass = "Warrior" | "Mage" | "Rogue";
 
@@ -69,6 +70,10 @@ export const usePlayerStore = create<PlayerStore>((set) => ({
         stats: baseStats[charClass],
       },
     });
+    const starterItem = ITEMS.find((item) => item.id === "iron-sword");
+    if (starterItem) {
+      useInventoryStore.getState().addItem(starterItem);
+    }
   },
 
   resetPlayer: () => set({ player: null }),

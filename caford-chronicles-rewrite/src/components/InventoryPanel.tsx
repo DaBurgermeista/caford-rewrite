@@ -9,36 +9,39 @@ export default function InventoryPanel() {
   const renderItemCard = (item: Item, isEquipped = false) => (
     <div
       key={item.id}
-      className={`border p-2 rounded text-xs shadow-sm ${
-        isEquipped ? "bg-stone-800 text-white" : "bg-stone-950 text-gray-200"
-      }`}
+      className={`rounded-lg border shadow-md w-36 p-3 flex flex-col justify-between 
+      ${
+        isEquipped
+          ? "bg-stone-800 text-white border-stone-600"
+          : "bg-stone-950 text-gray-200 border-stone-700"
+      }
+      hover:ring-2 hover:ring-sky-500 transition-all`}
     >
-      <p className="font-bold">{item.name}</p>
-      <p className="italic text-muted-foreground">{item.description}</p>
-      {item.bonuses && (
-        <ul className="text-[10px] mt-1">
-          {Object.entries(item.bonuses).map(([stat, val]) => (
-            <li key={stat}>
-              +{val} {stat}
-            </li>
-          ))}
-        </ul>
-      )}
-      {isEquipped ? (
-        <button
-          className="mt-2 text-red-400 underline"
-          onClick={() => unequipItem(item.type as any)}
-        >
-          Unequip
-        </button>
-      ) : (
-        <button
-          className="mt-2 text-sky-400 underline"
-          onClick={() => equipItem(item)}
-        >
-          Equip
-        </button>
-      )}
+      <div>
+        <p className="font-semibold text-sm truncate">{item.name}</p>
+        {item.bonuses && (
+          <ul className="text-[11px] mt-1 space-y-0.5">
+            {Object.entries(item.bonuses).map(([stat, val]) => (
+              <li key={stat} className="capitalize text-amber-300">
+                +{val} {stat}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+      <button
+        className={`mt-3 text-xs font-medium underline transition-colors 
+        ${
+          isEquipped
+            ? "text-red-400 hover:text-red-300"
+            : "text-sky-400 hover:text-sky-300"
+        }`}
+        onClick={() =>
+          isEquipped ? unequipItem(item.type as keyof typeof equipped) : equipItem(item)
+        }
+      >
+        {isEquipped ? "Unequip" : "Equip"}
+      </button>
     </div>
   );
 

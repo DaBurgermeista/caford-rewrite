@@ -3,16 +3,15 @@ import { TiShoppingBag } from "react-icons/ti";
 import { BsJournal } from "react-icons/bs";
 import { IoIosStats } from "react-icons/io";
 import Modal from "@/components/GameUI/Modal";
-import { usePlayerStore } from "@/store/playerStore";
+import { getTotalStats, usePlayerStore } from "@/store/playerStore";
 import InventoryPanel from "@/components/InventoryPanel";
 
 export default function Sidebar() {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [isInventoryOpen, setIsInventoryOpen] = useState<boolean>(false);
   const [activeModal, setActiveModal] = useState<"stats" | "inventory" | null>(
     null
   );
   const player = usePlayerStore((s) => s.player);
+  const totalStats = getTotalStats();
 
   return (
     <>
@@ -41,12 +40,12 @@ export default function Sidebar() {
           <p>Name: {player?.name}</p>
           <p>Class: {player?.class}</p>
           <p>Level: {player?.level}</p>
-          <p>HP: {player?.health}</p>
-          <p>MP: {player?.mana}</p>
+          <p>HP: {totalStats?.health}</p>
+          <p>MP: {totalStats?.mana}</p>
           <div className="mt-4">
-            <p>STR: {player?.stats.strength}</p>
-            <p>AGI: {player?.stats.agility}</p>
-            <p>INT: {player?.stats.intelligence}</p>
+            <p>STR: {totalStats?.strength}</p>
+            <p>AGI: {totalStats?.agility}</p>
+            <p>INT: {totalStats?.intelligence}</p>
           </div>
         </Modal>
       )}
